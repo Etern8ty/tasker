@@ -21,19 +21,13 @@
         android:layout_toLeftOf="@+id/submit"
         android:ems="10"
         android:hint="@string/inputLabel" />
-
-    <ScrollView
-        android:id="@+id/scrollBox"
-        android:layout_above="@+id/submit"
-        android:layout_alignParentTop="true"
+    
+    <ListView
+        android:id="@+id/itemList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-            <LinearLayout 
-                android:id="@+id/holder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true">
-            </LinearLayout>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/submit"
+        android:layout_alignParentTop="true">
+    </ListView>
 
 </RelativeLayout>

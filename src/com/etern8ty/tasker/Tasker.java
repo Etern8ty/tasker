@@ -6,23 +6,34 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Tasker extends Activity {
 
-	private ArrayList<String> ToDoList;
+	EditText inputBox;
+	Button submit;
+	ListView itemList;
 	
-	public Tasker(){
-		super();
-		ToDoList = new ArrayList<String>();
-	}
-	
+	ArrayList<String> ToDoList;
+	ArrayAdapter<String> holder;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasker);
+        inputBox = (EditText) findViewById(R.id.inputBox);
+        submit = (Button) findViewById(R.id.submit);
+        itemList = (ListView) findViewById(R.id.itemList);
+        
+        ToDoList = new ArrayList<String>();
+        holder = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ToDoList);
+        itemList.setAdapter(holder);
     }
 
     @Override
@@ -32,24 +43,10 @@ public class Tasker extends Activity {
     }
     
     public void submitTask(View viewer){
-    	addRow();
-    	printList();
-    }
-    
-    private void addRow(){
-    	EditText inputBox = (EditText) findViewById(R.id.inputBox);
+    	
     	ToDoList.add(inputBox.getText().toString());
-    	inputBox.clearComposingText();
-    }
-    
-    private void printList(){
-    	LinearLayout ToDoHolder = (LinearLayout) findViewById(R.id.holder);
-    	for(int i=0; i<ToDoList.size(); i++){
-    		TextView ToDoItem = new TextView(this);
-    		ToDoItem.setId(i);
-    		ToDoItem.setText(ToDoList.get(i));
-    		ToDoHolder.addView(ToDoItem);
-    	}
+    	holder.notifyDataSetChanged();
+    	inputBox.setText("");
     }
     
 }
