@@ -4,15 +4,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.view.*;
+import android.widget.*;
+
+import com.tapfortap.TapForTap;
+import com.tapfortap.AdView;
+
 
 public class Tasker extends Activity {
 
@@ -26,7 +23,15 @@ public class Tasker extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        TapForTap.setDefaultAppId("c5dcca70-c734-012f-d6f5-40400a3f6b7e");
+        TapForTap.checkIn(this);
+
         setContentView(R.layout.activity_tasker);
+
+        AdView adView = (AdView) findViewById(R.id.ad_view);
+        adView.loadAds();
+        
         inputBox = (EditText) findViewById(R.id.inputBox);
         submit = (Button) findViewById(R.id.submit);
         itemList = (ListView) findViewById(R.id.itemList);
